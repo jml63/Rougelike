@@ -5,7 +5,7 @@ using System;
 namespace Rougelike
 {
     /// <summary>
-    /// A Game which has a list of game objects
+    /// A Game class which has a list of game objects
     /// </summary>
     class Game
     {
