@@ -7,10 +7,10 @@ namespace Rougelike
     /// </summary>
     class GameObject
     {
-        private int x;
-        private int y;
-        private RLColor col;
-        private char shape;
+        protected int x;
+        protected int y;
+        protected RLColor col;
+        protected char shape;
 
         public int X
         {
@@ -31,12 +31,6 @@ namespace Rougelike
         public void Draw(RLConsole console)
         {
             console.Set(x, y, col, null, shape);
-        }
-
-        public void Move(int dx, int dy)
-        {
-            x += dx;
-            y += dy;
         }
 
         public GameObject(int x, int y, RLColor col, char shape)

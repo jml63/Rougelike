@@ -35,6 +35,9 @@ namespace Rougelike
         {
             rootConsole.Clear();
 
+            foreach (var tile in game.Map.Tiles)
+                tile.Draw(rootConsole);
+
             foreach (var obj in game.Objects)
                 obj.Draw(rootConsole);
 

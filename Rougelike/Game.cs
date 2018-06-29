@@ -10,12 +10,17 @@ namespace Rougelike
     class Game
     {
         private List<GameObject> objects;
-        private GameObject player;
-        private GameObject npc;
+        private Playable player;
+        private GameMap map;
 
         public List<GameObject> Objects
         {
             get { return objects; }
+        }
+
+        public GameMap Map
+        {
+            get { return map; }
         }
 
         /// <summary>
@@ -23,12 +28,11 @@ namespace Rougelike
         /// </summary>
         public Game()
         {
-            player = new GameObject(40, 25, RLColor.White, '@');
-            npc = new GameObject(5, 45, RLColor.Red, 'X');
+            map = new GameMap(80, 55);
+            player = new Playable(40, 25, RLColor.White, '@');
 
             objects = new List<GameObject>();
             objects.Add(player);
-            objects.Add(npc);
         }
 
         /// <summary>
@@ -49,10 +53,10 @@ namespace Rougelike
                 default: break;
             }
 
-            player.Move(dx, dy);
-
-            Random rnd = new Random();
-            npc.Move(rnd.Next(-1, 1), rnd.Next(-1, 1));
+            if (!map.Is_Blocked(player.X + dx, player.Y + dy))
+            {
+                player.Move(dx, dy);
+            }
         }
 
     }
