@@ -16,7 +16,8 @@ namespace Rougelike
         MoveUp,
         MoveDown,
         MoveLeft,
-        MoveRight
+        MoveRight,
+        Space
     }
 
     class Program

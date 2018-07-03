@@ -13,6 +13,13 @@ namespace Rougelike
         private Playable player;
         private GameMap map;
 
+        private int room_max_size = 16;
+        private int room_min_size = 8;
+        private int max_rooms = 30;
+        private int map_width = 80;
+        private int map_height = 45;
+
+
         public List<GameObject> Objects
         {
             get { return objects; }
@@ -28,8 +35,11 @@ namespace Rougelike
         /// </summary>
         public Game()
         {
-            map = new GameMap(80, 55);
-            player = new Playable(40, 25, RLColor.White, '@');
+            player = new Playable(0, 0, RLColor.White, 'O');
+
+            map = new GameMap(map_width, map_height);
+            map.Make_Map(max_rooms, room_min_size, room_max_size, map_width, map_height, player);
+            map.Is_Bottom_Wall();
 
             objects = new List<GameObject>();
             objects.Add(player);

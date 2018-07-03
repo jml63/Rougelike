@@ -7,7 +7,7 @@ namespace Rougelike
     {
         //properties
         private static int screenWidth = 80;
-        private static int screenHeight = 50;
+        private static int screenHeight = 45;
         private static RLRootConsole rootConsole;
         private Game game;
 
@@ -19,8 +19,12 @@ namespace Rougelike
         private void Update(object sender, UpdateEventArgs e)
         {
             var move = Check_Keys();
+            if (move == Action.Space)
+            {
+                game = new Game();
+            }
 
-            if (move != Action.None)
+                if (move != Action.None)
             {
                 game.ProcessAction(move);
             }
@@ -59,6 +63,7 @@ namespace Rougelike
                     case RLKey.Down: action = Action.MoveDown; break;
                     case RLKey.Left: action = Action.MoveLeft; break;
                     case RLKey.Right: action = Action.MoveRight; break;
+                    case RLKey.Space: action = Action.Space; break;
                 }
             }
             return action;
@@ -71,7 +76,7 @@ namespace Rougelike
         public Console(Game game)
         {
             this.game = game;
-            rootConsole = new RLRootConsole("ascii_8x8.png", screenWidth, screenHeight, 8, 8);
+            rootConsole = new RLRootConsole("ascii_8x8.png", screenWidth, screenHeight, 8, 8, 1);
             rootConsole.Update += Update;
             rootConsole.Render += Render;
         }
